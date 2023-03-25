@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ExceptionReport</string>
+    <string name="text_copy">Copy</string>
+    <string name="text_close">Close</string>
+    <string name="title_exception">An unexpected error has occurred!</string>
+    <string name="text_exception_button">Exception Button</string>
+</resources>

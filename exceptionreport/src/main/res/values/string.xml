@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_copy">Copy</string>
+    <string name="text_close">Close</string>
+    <string name="title_exception">An unexpected error has occurred!</string>
+    <string name="text_exception_button">Exception Button</string>
+    <string name="text_copied">Text copied</string>
+</resources>
