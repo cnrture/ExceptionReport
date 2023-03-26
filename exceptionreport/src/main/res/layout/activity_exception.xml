@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:padding="16dp">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_title"
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/title_exception"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +30,8 @@
             android:id="@+id/tv_exception_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#2C2A2A"
-            android:textSize="16sp"
+            android:textColor="@color/dark_gray"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </ScrollView>
