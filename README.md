@@ -1,6 +1,6 @@
 # ExceptionReport
 
-## Download [![](https://jitpack.io/v/cnrture/ExceptionReport.svg)](https://jitpack.io/#cnrture/ExceptionReport)
+## Implementation [![](https://jitpack.io/v/cnrture/ExceptionReport.svg)](https://jitpack.io/#cnrture/ExceptionReport)
 ```kotlin
 allprojects { 
     repositories {
