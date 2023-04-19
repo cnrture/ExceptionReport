@@ -15,7 +15,7 @@ dependencies {
 
 ## Usage
 ```kotlin
-ExceptionHandler().init(this, R.color.teal_700) //Color is optional
+ExceptionReport(this, R.color.teal_700) //Color is optional
 ```
 
 <img src="https://user-images.githubusercontent.com/29903779/227750365-f650bd85-c915-40c7-9b89-3ebe98691585.gif"/>
