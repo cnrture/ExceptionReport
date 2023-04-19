@@ -3,9 +3,9 @@ package com.canerture.exceptionreport
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.graphics.Color
-import android.graphics.Typeface
+import android.graphics.Typeface.BOLD
 import android.os.Bundle
-import android.text.Layout
+import android.text.Layout.Alignment.ALIGN_CENTER
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
@@ -52,7 +52,7 @@ class ExceptionReportActivity : AppCompatActivity() {
 
             btnCopy.setOnClickListener {
                 (getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).apply {
-                    setPrimaryClip(ClipData.newPlainText("text", exceptionText))
+                    setPrimaryClip(ClipData.newPlainText(getString(R.string.text), exceptionText))
                     Snackbar.make(it, getString(R.string.text_copied), DURATION).show()
                 }
             }
@@ -65,12 +65,19 @@ class ExceptionReportActivity : AppCompatActivity() {
 
     private fun TextView.setExceptionText(exceptionText: String, color: Int) {
         SpannableString(exceptionText).apply {
-            listOf("Android Version:", "Device:", "Date:", "Error").forEach {
+            listOf(
+                getString(R.string.android_version),
+                getString(R.string.device),
+                getString(R.string.date),
+                getString(R.string.error)
+            ).forEach {
                 setSpan(ForegroundColorSpan(color), exceptionText, it)
-                setSpan(StyleSpan(Typeface.BOLD), exceptionText, it)
-                if (it != "Error")
-                    setSpan(Standard(Layout.Alignment.ALIGN_CENTER), exceptionText, it)
+                setSpan(StyleSpan(BOLD), exceptionText, it)
+
+                if (it != getString(R.string.error))
+                    setSpan(Standard(ALIGN_CENTER), exceptionText, it)
             }
+
             text = this
             movementMethod = LinkMovementMethod.getInstance()
             highlightColor = Color.TRANSPARENT

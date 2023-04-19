@@ -12,14 +12,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.system.exitProcess
 
-class ExceptionHandler : Thread.UncaughtExceptionHandler {
+class ExceptionReport(
+    private val activity: Activity,
+    @ColorRes private val themeColor: Int? = null
+) : Thread.UncaughtExceptionHandler {
 
     private var onExceptionReceived: (String) -> Unit = {}
 
-    fun init(
-        activity: Activity,
-        @ColorRes themeColor: Int? = null
-    ) {
+    init {
         Thread.setDefaultUncaughtExceptionHandler(this)
 
         onExceptionReceived = { exceptionText ->
@@ -37,13 +37,16 @@ class ExceptionHandler : Thread.UncaughtExceptionHandler {
         val stackTrace = StringWriter()
         exception.printStackTrace(PrintWriter(stackTrace))
 
-        StringBuilder().apply {
-            append("Android Version: ${Build.VERSION.RELEASE}\n")
-            append("Device: ${Build.BRAND.uppercase()} - ${Build.DEVICE.uppercase()}\n")
-            append("Date: ${getDate()}\n\n")
-            append("Error\n")
-            append("$stackTrace\n")
-            onExceptionReceived(this.toString())
+        with(activity) {
+            StringBuilder().apply {
+                append("${getString(R.string.android_version)} ${Build.VERSION.RELEASE}\n")
+                append("${getString(R.string.device)} ${Build.BRAND.uppercase()} - ${Build.DEVICE.uppercase()}\n")
+                append("${getString(R.string.date)} ${getDate()}\n\n")
+                append("${getString(R.string.error)}\n")
+                append("$stackTrace\n")
+
+                onExceptionReceived(this.toString())
+            }
         }
     }
 

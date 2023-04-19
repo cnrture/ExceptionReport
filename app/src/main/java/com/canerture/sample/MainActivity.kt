@@ -2,7 +2,7 @@ package com.canerture.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.canerture.exceptionreport.ExceptionHandler
+import com.canerture.exceptionreport.ExceptionReport
 import com.canerture.sample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ExceptionHandler().init(this, R.color.teal_700)
+        ExceptionReport(this, R.color.teal_700)
 
         binding.btnException.setOnClickListener {
             throw NullPointerException("Null data!")
