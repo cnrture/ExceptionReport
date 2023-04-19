@@ -15,7 +15,18 @@ dependencies {
 
 ## Usage
 ```kotlin
-ExceptionReport(this, R.color.teal_700) //Color is optional
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        ExceptionReport(this, R.color.teal_700) // Color is optional
+    }
+}
 ```
 
 <img src="https://user-images.githubusercontent.com/29903779/227750365-f650bd85-c915-40c7-9b89-3ebe98691585.gif"/>
