@@ -16,6 +16,8 @@ import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.canerture.exceptionreport.Const.EXCEPTION_TEXT
+import com.canerture.exceptionreport.Const.THEME_COLOR
 import com.canerture.exceptionreport.databinding.ActivityExceptionBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -30,8 +32,8 @@ class ExceptionReportActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        val exceptionText = intent.getStringExtra("exceptionText") as String
-        val themeColor = intent.getIntExtra("themeColor", R.color.black)
+        val exceptionText = intent.getStringExtra(EXCEPTION_TEXT) as String
+        val themeColor = intent.getIntExtra(THEME_COLOR, R.color.black)
 
         val color = ContextCompat.getColor(this@ExceptionReportActivity, themeColor)
 
@@ -44,8 +46,11 @@ class ExceptionReportActivity : AppCompatActivity() {
             }
 
             tvTitle.setTextColor(color)
-            btnClose.setStrokeColorResource(themeColor)
-            btnClose.setTextColor(color)
+            btnClose.apply {
+                setStrokeColorResource(themeColor)
+                setTextColor(color)
+            }
+
             btnCopy.setBackgroundColor(color)
 
             tvExceptionText.setExceptionText(exceptionText, color)

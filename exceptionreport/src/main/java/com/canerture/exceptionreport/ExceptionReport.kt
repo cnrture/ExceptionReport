@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Build
 import android.os.Process
 import androidx.annotation.ColorRes
+import com.canerture.exceptionreport.Const.DATE_FORMAT
+import com.canerture.exceptionreport.Const.EXCEPTION_TEXT
+import com.canerture.exceptionreport.Const.THEME_COLOR
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.text.DateFormat
@@ -24,8 +27,8 @@ class ExceptionReport(
 
         onExceptionReceived = { exceptionText ->
             Intent(activity, ExceptionReportActivity::class.java).apply {
-                putExtra("exceptionText", exceptionText)
-                themeColor?.let { putExtra("themeColor", it) }
+                putExtra(EXCEPTION_TEXT, exceptionText)
+                themeColor?.let { putExtra(THEME_COLOR, it) }
                 activity.startActivity(this)
             }
             Process.killProcess(Process.myPid())
@@ -51,7 +54,7 @@ class ExceptionReport(
     }
 
     private fun getDate(): String {
-        val dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+        val dateFormat: DateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
         val date = Date()
         return dateFormat.format(date).toString()
     }
