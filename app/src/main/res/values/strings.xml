@@ -4,4 +4,12 @@
     <string name="text_close">Close</string>
     <string name="title_exception">An unexpected error has occurred!</string>
     <string name="text_exception_button">Exception Button</string>
+
+    <string name="text_copied">Text copied</string>
+
+    <string name="android_version">Android Version:</string>
+    <string name="device">Device:</string>
+    <string name="date">Date:</string>
+    <string name="error">Error:</string>
+    <string name="text">text</string>
 </resources>

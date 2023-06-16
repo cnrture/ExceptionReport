@@ -2,7 +2,7 @@ package com.canerture.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.canerture.exceptionreport.ExceptionReport
+import com.canerture.exceptionreport.ui.ExceptionReport
 import com.canerture.sample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         ExceptionReport(this, R.color.teal_700)
+            //.setCustomActivity(ExceptionActivity::class.java)
+            .enableSolutionModule(BuildConfig.API_KEY)
 
         binding.btnException.setOnClickListener {
             throw NullPointerException("Null data!")
