@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.canerture.sample.databinding.ActivityExceptionBinding
 
-class ExceptionActivity : AppCompatActivity() {
+class CustomExceptionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityExceptionBinding
 
@@ -14,8 +14,10 @@ class ExceptionActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val exceptionText = intent.getStringExtra("exceptionText") as String
+        val deviceInfo = intent.getStringExtra("deviceInfo") as String
 
         binding.tvExceptionText.text = exceptionText
+        binding.tvDeviceInfoText.text = deviceInfo
     }
 }
 

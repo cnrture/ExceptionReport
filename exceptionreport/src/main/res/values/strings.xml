@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="copy">Copy</string>
+    <string name="share">Share</string>
     <string name="close">Close</string>
     <string name="search_with_chat_gpt">Search Resolve</string>
     <string name="title_exception">An unexpected error has occurred!</string>

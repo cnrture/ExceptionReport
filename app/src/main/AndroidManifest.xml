@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name="com.canerture.sample.ExceptionActivity"
+            android:name="com.canerture.sample.CustomExceptionActivity"
             android:exported="false" />
     </application>
 

@@ -15,8 +15,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         ExceptionReport(this, R.color.teal_700)
-            //.setCustomActivity(ExceptionActivity::class.java)
-            .enableSolutionModule(BuildConfig.API_KEY)
+            //.setCustomActivity(CustomExceptionActivity::class.java)
+            //.enableSolutionModule(BuildConfig.API_KEY)
 
         binding.btnException.setOnClickListener {
             throw NullPointerException("Null data!")

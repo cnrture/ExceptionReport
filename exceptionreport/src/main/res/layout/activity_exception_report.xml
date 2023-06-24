@@ -37,8 +37,9 @@
         android:id="@+id/rl_bottom_area"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="24dp"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
         android:animateLayoutChanges="true"
         android:elevation="16dp"
         app:backgroundColor="@color/light_gray"
@@ -94,7 +95,6 @@
             android:text="@string/search_for_solution"
             android:textAllCaps="false"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/btn_copy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
@@ -103,7 +103,8 @@
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_copy"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/fab_close"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider">
@@ -141,35 +142,6 @@
         </ScrollView>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/btn_close"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/light_gray"
-            android:gravity="center"
-            android:paddingVertical="12dp"
-            android:text="@string/close"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/btn_copy"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingVertical="12dp"
-            android:text="@string/copy"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/btn_close"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/error_text"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -182,16 +154,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/dark_gray"
-            app:layout_constraintBottom_toTopOf="@+id/btn_close"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_close" />
-
         <ImageView
             android:id="@+id/progress_bar"
             android:layout_width="0dp"
@@ -203,6 +165,48 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            app:elevation="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fab_share"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_close"
+            app:tint="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:elevation="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_close"
+            app:layout_constraintEnd_toStartOf="@+id/fab_copy"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/fab_close"
+            app:layout_constraintTop_toTopOf="@+id/fab_close"
+            app:srcCompat="@drawable/ic_share"
+            app:tint="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:elevation="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/fab_share"
+            app:layout_constraintTop_toTopOf="@+id/fab_close"
+            app:srcCompat="@drawable/ic_copy"
+            app:tint="@color/white" />
 
     </com.tistory.zladnrms.roundablelayout.RoundableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

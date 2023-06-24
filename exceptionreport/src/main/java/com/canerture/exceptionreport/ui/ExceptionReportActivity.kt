@@ -3,6 +3,7 @@ package com.canerture.exceptionreport.ui
 import android.animation.ValueAnimator
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface.BOLD
@@ -87,8 +88,9 @@ class ExceptionReportActivity : AppCompatActivity() {
         tvSolution.isVisible = viewModel != null
 
         tvTitle.setTextColor(themeColor)
-        btnClose.setTextColor(themeColor)
-        btnCopy.setBackgroundColor(themeColor)
+        fabClose.backgroundTintList = ColorStateList.valueOf(themeColor)
+        fabShare.backgroundTintList = ColorStateList.valueOf(themeColor)
+        fabCopy.backgroundTintList = ColorStateList.valueOf(themeColor)
         btnSearchForSolution.setBackgroundColor(themeColor)
         progressBar.imageTintList = ColorStateList.valueOf(themeColor)
 
@@ -98,12 +100,12 @@ class ExceptionReportActivity : AppCompatActivity() {
 
         tvException.setSafeOnClickListener {
             setViewsGone(btnSearchForSolution, tvSolutionText)
-            setViewsVisible(tvExceptionText, btnCopy)
+            setViewsVisible(tvExceptionText, fabClose, fabShare, fabCopy)
             selectTab(true, themeColor, whiteColor, lightGrayColor)
         }
 
         tvSolution.setSafeOnClickListener {
-            setViewsGone(tvExceptionText, btnCopy)
+            setViewsGone(tvExceptionText, fabClose, fabShare, fabCopy)
             tvSolutionText.visible()
             btnSearchForSolution.isVisible = isSearchButtonVisible
             selectTab(false, themeColor, whiteColor, lightGrayColor)
@@ -117,7 +119,7 @@ class ExceptionReportActivity : AppCompatActivity() {
             tvException.isEnabled = false
         }
 
-        btnCopy.setSafeOnClickListener {
+        fabCopy.setSafeOnClickListener {
             (getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).apply {
                 setPrimaryClip(
                     ClipData.newPlainText(
@@ -129,7 +131,17 @@ class ExceptionReportActivity : AppCompatActivity() {
             }
         }
 
-        btnClose.setSafeOnClickListener {
+        fabShare.setSafeOnClickListener {
+            Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, deviceInfo.plus("\n\n$exceptionText"))
+                type = "text/plain"
+
+                startActivity(Intent.createChooser(this, null))
+            }
+        }
+
+        fabClose.setSafeOnClickListener {
             finishAffinity()
         }
     }
