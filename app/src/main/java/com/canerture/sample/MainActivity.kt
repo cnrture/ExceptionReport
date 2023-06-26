@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         ExceptionReport(this, R.color.teal_700)
             //.setCustomActivity(CustomExceptionActivity::class.java)
-            //.enableSolutionModule(BuildConfig.API_KEY)
+            //.enableSolutionFeature("Bearer $YourAPIKey")
 
         binding.btnException.setOnClickListener {
             throw NullPointerException("Null data!")

@@ -70,7 +70,7 @@ class ExceptionReport(
         this.targetActivity = targetActivity
     }
 
-    fun enableSolutionModule(apiKey: String) {
+    fun enableSolutionFeature(apiKey: String) {
         this.apiKey = apiKey
     }
 }

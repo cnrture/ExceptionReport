@@ -88,9 +88,8 @@ class ExceptionReportActivity : AppCompatActivity() {
         tvSolution.isVisible = viewModel != null
 
         tvTitle.setTextColor(themeColor)
-        fabClose.backgroundTintList = ColorStateList.valueOf(themeColor)
-        fabShare.backgroundTintList = ColorStateList.valueOf(themeColor)
-        fabCopy.backgroundTintList = ColorStateList.valueOf(themeColor)
+        btnShare.setBackgroundColor(themeColor)
+        btnCopy.setBackgroundColor(themeColor)
         btnSearchForSolution.setBackgroundColor(themeColor)
         progressBar.imageTintList = ColorStateList.valueOf(themeColor)
 
@@ -100,12 +99,12 @@ class ExceptionReportActivity : AppCompatActivity() {
 
         tvException.setSafeOnClickListener {
             setViewsGone(btnSearchForSolution, tvSolutionText)
-            setViewsVisible(tvExceptionText, fabClose, fabShare, fabCopy)
+            setViewsVisible(tvExceptionText, btnShare, btnCopy, divider2)
             selectTab(true, themeColor, whiteColor, lightGrayColor)
         }
 
         tvSolution.setSafeOnClickListener {
-            setViewsGone(tvExceptionText, fabClose, fabShare, fabCopy)
+            setViewsGone(tvExceptionText, btnShare, btnCopy, divider2)
             tvSolutionText.visible()
             btnSearchForSolution.isVisible = isSearchButtonVisible
             selectTab(false, themeColor, whiteColor, lightGrayColor)
@@ -119,7 +118,7 @@ class ExceptionReportActivity : AppCompatActivity() {
             tvException.isEnabled = false
         }
 
-        fabCopy.setSafeOnClickListener {
+        btnCopy.setSafeOnClickListener {
             (getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).apply {
                 setPrimaryClip(
                     ClipData.newPlainText(
@@ -131,7 +130,7 @@ class ExceptionReportActivity : AppCompatActivity() {
             }
         }
 
-        fabShare.setSafeOnClickListener {
+        btnShare.setSafeOnClickListener {
             Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, deviceInfo.plus("\n\n$exceptionText"))
@@ -141,7 +140,7 @@ class ExceptionReportActivity : AppCompatActivity() {
             }
         }
 
-        fabClose.setSafeOnClickListener {
+        btnClose.setSafeOnClickListener {
             finishAffinity()
         }
     }
