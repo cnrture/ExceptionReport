@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 ### Solution Module
-It works with the ChatGPT completion endpoint. To use it, get your own API key from the [link](https://platform.openai.com/account/api-keys) and include it in the code.
+It works with the OpenAI API completion endpoint. To use it, get your own API key from the [link](https://platform.openai.com/account/api-keys) and include it in the code.
 ```kotlin
 class MainActivity : AppCompatActivity() {
 
