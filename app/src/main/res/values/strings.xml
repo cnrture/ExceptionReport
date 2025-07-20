@@ -7,7 +7,7 @@
 
     <string name="text_copied">Text copied</string>
 
-    <string name="android_version">Android Version:</string>
+    <string name="android_version">Android </string>
     <string name="device">Device:</string>
     <string name="date">Date:</string>
     <string name="error">Error:</string>

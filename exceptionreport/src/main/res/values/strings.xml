@@ -3,12 +3,11 @@
     <string name="copy">Copy</string>
     <string name="share">Share</string>
     <string name="close">Close</string>
-    <string name="search_with_chat_gpt">Search Resolve</string>
     <string name="title_exception">An unexpected error has occurred!</string>
     <string name="exception_button">Exception Button</string>
     <string name="text_copied">Text copied</string>
 
-    <string name="android_version">Android Version:</string>
+    <string name="android_version">Android </string>
     <string name="device">Device:</string>
     <string name="date">Date:</string>
     <string name="exception">Exception</string>

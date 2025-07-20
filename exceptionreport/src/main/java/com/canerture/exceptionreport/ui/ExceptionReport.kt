@@ -4,12 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Process
-import androidx.annotation.ColorRes
 import com.canerture.exceptionreport.R
 import com.canerture.exceptionreport.common.Constants.DATE_FORMAT
 import com.canerture.exceptionreport.common.Constants.DEVICE_INFO
 import com.canerture.exceptionreport.common.Constants.EXCEPTION_TEXT
-import com.canerture.exceptionreport.common.Constants.THEME_COLOR
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.text.DateFormat
@@ -18,10 +16,7 @@ import java.util.Date
 import java.util.Locale
 import kotlin.system.exitProcess
 
-class ExceptionReport(
-    private val activity: Activity,
-    @ColorRes private val themeColor: Int? = null
-) : Thread.UncaughtExceptionHandler {
+class ExceptionReport(private val activity: Activity) : Thread.UncaughtExceptionHandler {
 
     private var onExceptionReceived: (String, String) -> Unit = { _, _ -> }
 
@@ -34,7 +29,6 @@ class ExceptionReport(
             Intent(activity, targetActivity ?: ExceptionReportActivity::class.java).apply {
                 putExtra(DEVICE_INFO, deviceInfo)
                 putExtra(EXCEPTION_TEXT, exceptionText)
-                themeColor?.let { putExtra(THEME_COLOR, it) }
                 activity.startActivity(this)
             }
             Process.killProcess(Process.myPid())
@@ -49,8 +43,8 @@ class ExceptionReport(
         with(activity) {
             StringBuilder().apply {
                 append("${getString(R.string.android_version)} ${Build.VERSION.RELEASE}\n")
-                append("${getString(R.string.device)} ${Build.BRAND.uppercase()} - ${Build.DEVICE.uppercase()}\n")
-                append("${getString(R.string.date)} ${getDate()}")
+                append("${Build.BRAND.uppercase()} - ${Build.DEVICE.uppercase()}\n")
+                append("${getDate()}")
 
                 onExceptionReceived(this.toString(), stackTrace.toString())
             }

@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        ExceptionReport(this, R.color.teal_700)
+        ExceptionReport(this)
         //.setCustomActivity(CustomExceptionActivity::class.java)
     }
 }
