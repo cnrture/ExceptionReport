@@ -45,27 +45,10 @@ class MainActivity : AppCompatActivity() {
     }
 }
 ```
-### Solution Module
-It works with the OpenAI API completion endpoint. To use it, get your own API key from the [link](https://platform.openai.com/account/api-keys) and include it in the code.
-```kotlin
-class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        ExceptionReport(this, R.color.teal_700) // Color is optional
-            .enableSolutionFeature("Bearer $YourAPIKey")
-    }
-}
-```
-
-| Default | Custom Activity | Solution Feature |
-| ------- | -------------------- | -------------------- |
-|<img src="https://github.com/cnrture/ExceptionReport/assets/29903779/ffd3946d-7897-4fe2-8396-afcdea342c4a"/>|<img src="https://github.com/cnrture/ExceptionReport/assets/29903779/f8bdb90f-7bf8-439a-9ca9-11476908406d"/>|<img src="https://github.com/cnrture/ExceptionReport/assets/29903779/32e400fb-f994-49c3-a0b2-c1e46a4fb56f"/>|
+| Default | Custom Activity |
+| ------- | -------------------- |
+|<img src="https://github.com/cnrture/ExceptionReport/assets/29903779/ffd3946d-7897-4fe2-8396-afcdea342c4a"/>|<img src="https://github.com/cnrture/ExceptionReport/assets/29903779/f8bdb90f-7bf8-439a-9ca9-11476908406d"/>|
 
 ## License
 
