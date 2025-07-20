@@ -124,7 +124,7 @@ class ExceptionReportActivity : AppCompatActivity() {
                             modifier = Modifier
                                 .weight(1f)
                                 .fillMaxWidth(),
-                            verticalArrangement = Arrangement.spacedBy(4.dp),
+                            verticalArrangement = Arrangement.spacedBy(12.dp),
                         ) {
                             items(parsedStackTrace) { element ->
                                 StackTraceItem(element)
