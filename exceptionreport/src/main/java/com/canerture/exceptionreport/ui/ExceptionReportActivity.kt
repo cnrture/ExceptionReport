@@ -39,7 +39,7 @@ import com.canerture.exceptionreport.R
 import com.canerture.exceptionreport.common.Constants.DEVICE_INFO
 import com.canerture.exceptionreport.common.Constants.EXCEPTION_TEXT
 import com.canerture.exceptionreport.common.Constants.PARSED_STACK_TRACE
-import com.canerture.exceptionreport.common.StackTraceElement
+import com.canerture.exceptionreport.data.StackTraceElement
 
 internal class ExceptionReportActivity : ComponentActivity() {
 
