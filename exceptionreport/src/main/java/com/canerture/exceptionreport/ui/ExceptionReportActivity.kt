@@ -4,8 +4,8 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -41,7 +41,7 @@ import com.canerture.exceptionreport.common.Constants.EXCEPTION_TEXT
 import com.canerture.exceptionreport.common.Constants.PARSED_STACK_TRACE
 import com.canerture.exceptionreport.common.StackTraceElement
 
-class ExceptionReportActivity : AppCompatActivity() {
+class ExceptionReportActivity : ComponentActivity() {
 
     private val exceptionText by lazy { intent.getStringExtra(EXCEPTION_TEXT) as String }
     private val deviceInfo by lazy { intent.getStringExtra(DEVICE_INFO) as String }
