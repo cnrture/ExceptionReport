@@ -44,7 +44,7 @@ class ExceptionReport(private val activity: Activity) : Thread.UncaughtException
             StringBuilder().apply {
                 append("${getString(R.string.android_version)} ${Build.VERSION.RELEASE}\n")
                 append("${Build.BRAND.uppercase()} - ${Build.DEVICE.uppercase()}\n")
-                append("${getDate()}")
+                append(getDate())
 
                 onExceptionReceived(this.toString(), stackTrace.toString())
             }
