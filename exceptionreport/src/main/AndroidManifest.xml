@@ -3,7 +3,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application android:name=".ui.ExceptionReportApplication">
+    <application>
         <activity
             android:name="com.canerture.exceptionreport.ui.ExceptionReportActivity"
             android:exported="true" />

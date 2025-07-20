@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Process
 import androidx.annotation.ColorRes
 import com.canerture.exceptionreport.R
-import com.canerture.exceptionreport.common.Constants
 import com.canerture.exceptionreport.common.Constants.DATE_FORMAT
 import com.canerture.exceptionreport.common.Constants.DEVICE_INFO
 import com.canerture.exceptionreport.common.Constants.EXCEPTION_TEXT
@@ -27,7 +26,6 @@ class ExceptionReport(
     private var onExceptionReceived: (String, String) -> Unit = { _, _ -> }
 
     private var targetActivity: Class<*>? = null
-    private var apiKey: String? = null
 
     init {
         Thread.setDefaultUncaughtExceptionHandler(this)
@@ -36,7 +34,6 @@ class ExceptionReport(
             Intent(activity, targetActivity ?: ExceptionReportActivity::class.java).apply {
                 putExtra(DEVICE_INFO, deviceInfo)
                 putExtra(EXCEPTION_TEXT, exceptionText)
-                apiKey?.let { putExtra(Constants.API_KEY, apiKey) }
                 themeColor?.let { putExtra(THEME_COLOR, it) }
                 activity.startActivity(this)
             }
@@ -64,13 +61,5 @@ class ExceptionReport(
         val dateFormat: DateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
         val date = Date()
         return dateFormat.format(date).toString()
-    }
-
-    fun setCustomActivity(targetActivity: Class<*>) {
-        this.targetActivity = targetActivity
-    }
-
-    fun enableSolutionFeature(apiKey: String) {
-        this.apiKey = apiKey
     }
 }
