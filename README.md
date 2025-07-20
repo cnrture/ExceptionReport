@@ -10,8 +10,7 @@
   debugging
 - **🎨 Modern UI**: Beautiful Material Design 3 interface with intuitive user experience
 - **📋 Easy Sharing**: Copy to clipboard or share exception reports with one tap
-- **🤖 AI Integration**: Optional OpenAI integration for automatic solution suggestions
-- **⚙️ Customizable**: Support for custom activities and themes
+- **⚙️ Customizable**: Support for custom activities
 - **📱 Lightweight**: Minimal impact on app performance and size
 
 ## 📦 Installation
