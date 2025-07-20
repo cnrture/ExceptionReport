@@ -8,10 +8,10 @@ import com.canerture.exceptionreport.R
 import com.canerture.exceptionreport.common.Constants.DEVICE_INFO
 import com.canerture.exceptionreport.common.Constants.EXCEPTION_TEXT
 import com.canerture.exceptionreport.common.Constants.PARSED_STACK_TRACE
-import com.canerture.exceptionreport.common.StackTraceElement
 import com.canerture.exceptionreport.common.getCurrentDate
 import com.canerture.exceptionreport.common.getPackageName
 import com.canerture.exceptionreport.common.parseStackTrace
+import com.canerture.exceptionreport.data.StackTraceElement
 import java.io.PrintWriter
 import java.io.StringWriter
 import kotlin.system.exitProcess

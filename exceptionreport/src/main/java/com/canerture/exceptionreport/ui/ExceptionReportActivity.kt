@@ -41,7 +41,7 @@ import com.canerture.exceptionreport.common.Constants.EXCEPTION_TEXT
 import com.canerture.exceptionreport.common.Constants.PARSED_STACK_TRACE
 import com.canerture.exceptionreport.common.StackTraceElement
 
-class ExceptionReportActivity : ComponentActivity() {
+internal class ExceptionReportActivity : ComponentActivity() {
 
     private val exceptionText by lazy { intent.getStringExtra(EXCEPTION_TEXT) as String }
     private val deviceInfo by lazy { intent.getStringExtra(DEVICE_INFO) as String }
