@@ -7,20 +7,10 @@
     <string name="title_exception">An unexpected error has occurred!</string>
     <string name="exception_button">Exception Button</string>
     <string name="text_copied">Text copied</string>
-    <string name="searching">Searching…</string>
-
-    <string name="chat_gpt_prompt">I\'ll send you a crash, I want you to write a response as bullet by bullet;\n
-Whats the problem at crash that I sent ?\n
-How should be fixed ?\n
-Explain which situations caused to the crash ?\n
-And write a sample and try to fix it.\n
-Here is the crash:\n\n</string>
 
     <string name="android_version">Android Version:</string>
     <string name="device">Device:</string>
     <string name="date">Date:</string>
     <string name="exception">Exception</string>
-    <string name="solution">Solution</string>
-    <string name="search_for_solution">Search for Solution</string>
     <string name="text">text</string>
 </resources>

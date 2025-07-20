@@ -26,7 +26,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
+        compose = true
     }
 
     compileOptions {
@@ -58,4 +58,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(platform(libs.androidx.compose.bom))
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.bundles.androidx)
 }

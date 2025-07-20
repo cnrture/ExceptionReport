@@ -3,96 +3,101 @@ package com.canerture.exceptionreport.ui
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.Typeface.BOLD
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.method.LinkMovementMethod
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
-import android.view.WindowManager
-import android.widget.TextView
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.canerture.exceptionreport.R
 import com.canerture.exceptionreport.common.Constants.DEVICE_INFO
-import com.canerture.exceptionreport.common.Constants.DURATION
 import com.canerture.exceptionreport.common.Constants.EXCEPTION_TEXT
 import com.canerture.exceptionreport.common.Constants.THEME_COLOR
 import com.canerture.exceptionreport.common.colorRes
-import com.canerture.exceptionreport.common.setSafeOnClickListener
-import com.canerture.exceptionreport.common.setSpan
-import com.canerture.exceptionreport.databinding.ActivityExceptionReportBinding
-import com.google.android.material.snackbar.Snackbar
 
 class ExceptionReportActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityExceptionReportBinding
+    private val exceptionText by lazy { intent.getStringExtra(EXCEPTION_TEXT) as String }
+    private val deviceInfo by lazy { intent.getStringExtra(DEVICE_INFO) as String }
+    private val themeColor by lazy { applicationContext.colorRes(intent.getIntExtra(THEME_COLOR, R.color.black)) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityExceptionReportBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContent {
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+                bottomBar = {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Button(
+                            modifier = Modifier.weight(1f),
+                            onClick = {
+                                (getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).apply {
+                                    setPrimaryClip(
+                                        ClipData.newPlainText(
+                                            getString(R.string.text),
+                                            deviceInfo.plus("\n\n$exceptionText")
+                                        )
+                                    )
+                                }
+                            },
+                        ) {
+                            Text(text = stringResource(R.string.share))
+                        }
+                        Spacer(modifier = Modifier.size(8.dp))
+                        Button(
+                            modifier = Modifier.weight(1f),
+                            onClick = {
+                                Intent().apply {
+                                    action = Intent.ACTION_SEND
+                                    putExtra(Intent.EXTRA_TEXT, deviceInfo.plus("\n\n$exceptionText"))
+                                    type = "text/plain"
 
-        supportActionBar?.hide()
-
-        initUI()
-    }
-
-    private fun initUI() = with(binding) {
-
-        val exceptionText = intent.getStringExtra(EXCEPTION_TEXT) as String
-        val deviceInfo = intent.getStringExtra(DEVICE_INFO) as String
-        val themeColor = applicationContext.colorRes(intent.getIntExtra(THEME_COLOR, R.color.black))
-
-        tvTitle.setTextColor(themeColor)
-        btnShare.setBackgroundColor(themeColor)
-        btnCopy.setBackgroundColor(themeColor)
-
-        tvDeviceInfoText.setDeviceInfo(deviceInfo, themeColor)
-
-        tvExceptionText.text = exceptionText
-
-        btnCopy.setSafeOnClickListener {
-            (getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).apply {
-                setPrimaryClip(
-                    ClipData.newPlainText(
-                        getString(R.string.text),
-                        deviceInfo.plus("\n\n$exceptionText")
+                                    startActivity(Intent.createChooser(this, null))
+                                }
+                            },
+                        ) {
+                            Text(text = stringResource(R.string.copy))
+                        }
+                    }
+                },
+            ) { paddingValues ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues),
+                ) {
+                    Text(
+                        text = stringResource(R.string.title_exception),
                     )
-                )
-                Snackbar.make(it, getString(R.string.text_copied), DURATION).show()
+                    Spacer(modifier = Modifier.size(16.dp))
+                    Text(
+                        text = exceptionText,
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
+                    Spacer(modifier = Modifier.size(16.dp))
+                    Text(
+                        modifier = Modifier
+                            .verticalScroll(rememberScrollState())
+                            .padding(16.dp),
+                        text = exceptionText,
+                    )
+                }
             }
-        }
-
-        btnShare.setSafeOnClickListener {
-            Intent().apply {
-                action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, deviceInfo.plus("\n\n$exceptionText"))
-                type = "text/plain"
-
-                startActivity(Intent.createChooser(this, null))
-            }
-        }
-
-        btnClose.setSafeOnClickListener {
-            finishAffinity()
         }
     }
-
-    private fun TextView.setDeviceInfo(exceptionText: String, color: Int) =
-        SpannableString(exceptionText).apply {
-            listOf(
-                getString(R.string.android_version),
-                getString(R.string.device),
-                getString(R.string.date)
-            ).forEach {
-                setSpan(ForegroundColorSpan(color), exceptionText, it)
-                setSpan(StyleSpan(BOLD), exceptionText, it)
-            }
-
-            text = this
-            movementMethod = LinkMovementMethod.getInstance()
-            highlightColor = Color.TRANSPARENT
-        }
 }
 
