@@ -44,12 +44,6 @@ class ExceptionReportActivity : AppCompatActivity() {
         val deviceInfo = intent.getStringExtra(DEVICE_INFO) as String
         val themeColor = applicationContext.colorRes(intent.getIntExtra(THEME_COLOR, R.color.black))
 
-        window.apply {
-            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            statusBarColor = themeColor
-        }
-
         tvTitle.setTextColor(themeColor)
         btnShare.setBackgroundColor(themeColor)
         btnCopy.setBackgroundColor(themeColor)
