@@ -9,7 +9,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.cnrture:ExceptionReport:Tag'
+    implementation 'com.github.cnrture:ExceptionReport:1.8'
 }
 ```
 
