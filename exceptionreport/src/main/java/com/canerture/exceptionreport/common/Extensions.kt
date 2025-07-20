@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-fun String.parseStackTrace(packageName: String): List<StackTraceElement> {
+internal fun String.parseStackTrace(packageName: String): List<StackTraceElement> {
     return this.lines()
         .filter { it.trim().startsWith("at ") }
         .mapNotNull { line ->
@@ -35,7 +35,7 @@ fun String.parseStackTrace(packageName: String): List<StackTraceElement> {
         }
 }
 
-fun String.getPackageName(): String {
+internal fun String.getPackageName(): String {
     return this.lines()
         .firstOrNull { it.trim().startsWith("at ") && !it.contains("android.") && !it.contains("java.") }
         ?.let { line ->
@@ -44,7 +44,7 @@ fun String.getPackageName(): String {
         } ?: ""
 }
 
-fun getCurrentDate(): String {
+internal fun getCurrentDate(): String {
     val dateFormat: DateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
     val date = Date()
     return dateFormat.format(date).toString()
