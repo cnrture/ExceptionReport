@@ -60,7 +60,9 @@ class ExceptionReportActivity : AppCompatActivity() {
                 containerColor = Color.White,
                 bottomBar = {
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 24.dp),
                     ) {
                         Button(
                             modifier = Modifier.weight(1f),
@@ -175,18 +177,21 @@ private fun StackTraceItem(element: StackTraceElement) {
             )
 
             element.fileName?.let { fileName ->
+                Spacer(modifier = Modifier.size(4.dp))
                 Text(
                     text = "$fileName:${element.lineNumber}",
                     fontSize = 12.sp,
                     color = Color.Gray,
-                    fontFamily = FontFamily.Monospace
+                    fontFamily = FontFamily.Monospace,
+                    fontWeight = FontWeight.SemiBold,
                 )
             }
 
             if (element.isHighlighted) {
+                Spacer(modifier = Modifier.size(4.dp))
                 Text(
                     text = "⚠️ Your Code - Check this line",
-                    fontSize = 11.sp,
+                    fontSize = 12.sp,
                     color = Color(0xFFD32F2F),
                     fontWeight = FontWeight.Bold
                 )
