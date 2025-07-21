@@ -35,9 +35,9 @@ class ExceptionReport(
     }
 
     override fun uncaughtException(thread: Thread, exception: Throwable) {
-        val stackTrace = StringWriter()
-        exception.printStackTrace(PrintWriter(stackTrace))
-        val stackTraceString = stackTrace.toString()
+        val stackTraceString = StringWriter().apply {
+            exception.printStackTrace(PrintWriter(this))
+        }.toString()
 
         with(activity) {
             StringBuilder().apply {
