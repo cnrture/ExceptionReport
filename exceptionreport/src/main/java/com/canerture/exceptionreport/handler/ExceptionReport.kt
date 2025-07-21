@@ -1,13 +1,13 @@
-package com.canerture.exceptionreport.ui
+package com.canerture.exceptionreport.handler
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Process
 import com.canerture.exceptionreport.R
-import com.canerture.exceptionreport.common.Constants.DEVICE_INFO
-import com.canerture.exceptionreport.common.Constants.EXCEPTION_TEXT
+import com.canerture.exceptionreport.common.Constants
 import com.canerture.exceptionreport.common.getCurrentDate
+import com.canerture.exceptionreport.ui.ExceptionReportActivity
 import java.io.PrintWriter
 import java.io.StringWriter
 import kotlin.system.exitProcess
@@ -34,8 +34,8 @@ class ExceptionReport(
         callback(deviceInfo, stackTraceString)
 
         Intent(activity, targetActivity ?: ExceptionReportActivity::class.java).apply {
-            putExtra(DEVICE_INFO, deviceInfo)
-            putExtra(EXCEPTION_TEXT, stackTraceString)
+            putExtra(Constants.DEVICE_INFO, deviceInfo)
+            putExtra(Constants.EXCEPTION_TEXT, stackTraceString)
             activity.startActivity(this)
         }
 
