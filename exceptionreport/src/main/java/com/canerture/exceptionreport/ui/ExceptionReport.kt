@@ -35,18 +35,13 @@ class ExceptionReport(
     }
 
     override fun uncaughtException(thread: Thread, exception: Throwable) {
-        val stackTraceString = StringWriter().apply {
-            exception.printStackTrace(PrintWriter(this))
-        }.toString()
+        val stackTraceString = StringWriter().apply { exception.printStackTrace(PrintWriter(this)) }.toString()
+        StringBuilder().apply {
+            append("${activity.getString(R.string.android_version)} ${Build.VERSION.RELEASE}\n")
+            append("${Build.BRAND.uppercase()} - ${Build.DEVICE.uppercase()}\n")
+            append(getCurrentDate())
 
-        with(activity) {
-            StringBuilder().apply {
-                append("${getString(R.string.android_version)} ${Build.VERSION.RELEASE}\n")
-                append("${Build.BRAND.uppercase()} - ${Build.DEVICE.uppercase()}\n")
-                append(getCurrentDate())
-
-                onExceptionReceived(this.toString(), stackTraceString)
-            }
+            onExceptionReceived(this.toString(), stackTraceString)
         }
     }
 }
