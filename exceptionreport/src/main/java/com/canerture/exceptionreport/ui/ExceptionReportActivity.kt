@@ -178,7 +178,7 @@ internal class ExceptionReportActivity : ComponentActivity() {
                         imageVector = ImageVector.vectorResource(R.drawable.ic_copy),
                         contentDescription = null,
                     )
-                    Spacer(modifier = Modifier.size(4.dp))
+                    Spacer(modifier = Modifier.size(8.dp))
                     Text(
                         text = stringResource(R.string.copy),
                         fontWeight = FontWeight.Bold,
@@ -207,7 +207,7 @@ internal class ExceptionReportActivity : ComponentActivity() {
                         imageVector = Icons.Rounded.Share,
                         contentDescription = null,
                     )
-                    Spacer(modifier = Modifier.size(4.dp))
+                    Spacer(modifier = Modifier.size(8.dp))
                     Text(
                         text = stringResource(R.string.share),
                         fontWeight = FontWeight.Bold,
