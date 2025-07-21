@@ -7,29 +7,26 @@ import android.os.Process
 import com.canerture.exceptionreport.R
 import com.canerture.exceptionreport.common.Constants.DEVICE_INFO
 import com.canerture.exceptionreport.common.Constants.EXCEPTION_TEXT
-import com.canerture.exceptionreport.common.Constants.PARSED_STACK_TRACE
 import com.canerture.exceptionreport.common.getCurrentDate
-import com.canerture.exceptionreport.common.getPackageName
-import com.canerture.exceptionreport.common.parseStackTrace
-import com.canerture.exceptionreport.data.StackTraceElement
 import java.io.PrintWriter
 import java.io.StringWriter
 import kotlin.system.exitProcess
 
-class ExceptionReport(private val activity: Activity) : Thread.UncaughtExceptionHandler {
+class ExceptionReport(
+    private val activity: Activity,
+) : Thread.UncaughtExceptionHandler {
 
-    private var onExceptionReceived: (String, String, ArrayList<StackTraceElement>) -> Unit = { _, _, _ -> }
+    private var onExceptionReceived: (String, String) -> Unit = { _, _ -> }
 
     private var targetActivity: Class<*>? = null
 
     init {
         Thread.setDefaultUncaughtExceptionHandler(this)
 
-        onExceptionReceived = { deviceInfo, exceptionText, parsedStackTrace ->
+        onExceptionReceived = { deviceInfo, exceptionText ->
             Intent(activity, targetActivity ?: ExceptionReportActivity::class.java).apply {
                 putExtra(DEVICE_INFO, deviceInfo)
                 putExtra(EXCEPTION_TEXT, exceptionText)
-                putExtra(PARSED_STACK_TRACE, parsedStackTrace)
                 activity.startActivity(this)
             }
             Process.killProcess(Process.myPid())
@@ -42,16 +39,13 @@ class ExceptionReport(private val activity: Activity) : Thread.UncaughtException
         exception.printStackTrace(PrintWriter(stackTrace))
         val stackTraceString = stackTrace.toString()
 
-        val packageName = stackTraceString.getPackageName()
-        val parsedStackTrace = ArrayList(stackTraceString.parseStackTrace(packageName))
-
         with(activity) {
             StringBuilder().apply {
                 append("${getString(R.string.android_version)} ${Build.VERSION.RELEASE}\n")
                 append("${Build.BRAND.uppercase()} - ${Build.DEVICE.uppercase()}\n")
                 append(getCurrentDate())
 
-                onExceptionReceived(this.toString(), stackTraceString, parsedStackTrace)
+                onExceptionReceived(this.toString(), stackTraceString)
             }
         }
     }

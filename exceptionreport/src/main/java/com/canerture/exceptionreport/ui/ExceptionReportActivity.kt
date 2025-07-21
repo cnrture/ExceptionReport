@@ -51,16 +51,14 @@ import androidx.compose.ui.unit.sp
 import com.canerture.exceptionreport.R
 import com.canerture.exceptionreport.common.Constants.DEVICE_INFO
 import com.canerture.exceptionreport.common.Constants.EXCEPTION_TEXT
-import com.canerture.exceptionreport.common.Constants.PARSED_STACK_TRACE
+import com.canerture.exceptionreport.common.getPackageName
+import com.canerture.exceptionreport.common.parseStackTrace
 import com.canerture.exceptionreport.data.StackTraceElement
 
 internal class ExceptionReportActivity : ComponentActivity() {
 
     private val exceptionText by lazy { intent.getStringExtra(EXCEPTION_TEXT) as String }
     private val deviceInfo by lazy { intent.getStringExtra(DEVICE_INFO) as String }
-    private val parsedStackTrace by lazy {
-        intent.getSerializableExtra(PARSED_STACK_TRACE) as? ArrayList<StackTraceElement> ?: arrayListOf()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +76,8 @@ internal class ExceptionReportActivity : ComponentActivity() {
 
     @Composable
     private fun ExceptionReportScreen() {
+        val packageName = exceptionText.getPackageName()
+        val parsedStackTrace = ArrayList(exceptionText.parseStackTrace(packageName))
         Scaffold(
             modifier = Modifier
                 .fillMaxSize()
