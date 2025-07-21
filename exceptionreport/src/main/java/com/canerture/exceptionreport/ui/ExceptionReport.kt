@@ -14,34 +14,33 @@ import kotlin.system.exitProcess
 
 class ExceptionReport(
     private val activity: Activity,
-    private var onExceptionReceived: (String, String) -> Unit = { _, _ -> }
+    private var callback: (String, String) -> Unit = { _, _ -> }
 ) : Thread.UncaughtExceptionHandler {
 
     private var targetActivity: Class<*>? = null
 
     init {
         Thread.setDefaultUncaughtExceptionHandler(this)
-
-        onExceptionReceived = { deviceInfo, exceptionText ->
-            Intent(activity, targetActivity ?: ExceptionReportActivity::class.java).apply {
-                putExtra(DEVICE_INFO, deviceInfo)
-                putExtra(EXCEPTION_TEXT, exceptionText)
-                activity.startActivity(this)
-            }
-            Process.killProcess(Process.myPid())
-            exitProcess(2)
-        }
     }
 
     override fun uncaughtException(thread: Thread, exception: Throwable) {
         val stackTraceString = StringWriter().apply { exception.printStackTrace(PrintWriter(this)) }.toString()
-        StringBuilder().apply {
+        val deviceInfo = StringBuilder().apply {
             append("${activity.getString(R.string.android_version)} ${Build.VERSION.RELEASE}\n")
             append("${Build.BRAND.uppercase()} - ${Build.DEVICE.uppercase()}\n")
             append(getCurrentDate())
+        }.toString()
 
-            onExceptionReceived(this.toString(), stackTraceString)
+        callback(deviceInfo, stackTraceString)
+
+        Intent(activity, targetActivity ?: ExceptionReportActivity::class.java).apply {
+            putExtra(DEVICE_INFO, deviceInfo)
+            putExtra(EXCEPTION_TEXT, stackTraceString)
+            activity.startActivity(this)
         }
+
+        Process.killProcess(Process.myPid())
+        exitProcess(2)
     }
 
     fun setCustomActivity(targetActivity: Class<*>) {
