@@ -21,5 +21,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ExceptionReport"
-include(":app")
+include(":sample")
 include(":exceptionreport")
