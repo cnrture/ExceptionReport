@@ -29,7 +29,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        ExceptionReport(this)
+        ExceptionReport(this) { deviceInfo, exceptionText ->
+            // Handle the exception data here
+            // For example, you can log it or send it to a server
+            println("Device Info: $deviceInfo")
+            println("Exception Text: $exceptionText")
+        }
         //.setCustomActivity(CustomExceptionActivity::class.java)
     }
 }

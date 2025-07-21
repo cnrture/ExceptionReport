@@ -14,9 +14,8 @@ import kotlin.system.exitProcess
 
 class ExceptionReport(
     private val activity: Activity,
-) : Thread.UncaughtExceptionHandler {
-
     private var onExceptionReceived: (String, String) -> Unit = { _, _ -> }
+) : Thread.UncaughtExceptionHandler {
 
     private var targetActivity: Class<*>? = null
 
@@ -43,5 +42,9 @@ class ExceptionReport(
 
             onExceptionReceived(this.toString(), stackTraceString)
         }
+    }
+
+    fun setCustomActivity(targetActivity: Class<*>) {
+        this.targetActivity = targetActivity
     }
 }
