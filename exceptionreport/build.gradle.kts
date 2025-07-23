@@ -44,7 +44,7 @@ publishing {
         create<MavenPublication>("release") {
             groupId = "com.github.canerture"
             artifactId = "exceptionreport"
-            version = "1.8"
+            version = "2.0.0"
             afterEvaluate {
                 from(components["release"])
             }
