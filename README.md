@@ -67,7 +67,7 @@ ExceptionReport(this).setCustomActivity(CustomExceptionActivity::class.java)
 
 |                                                         Default                                                          |                                                     Custom Activity                                                      |
 |:------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|
-| <img src="https://github.com/user-attachments/assets/73acb11d-e339-4042-a7f1-065e9d99b945" width="250"/> | <img src="https://github.com/cnrture/ExceptionReport/assets/29903779/f8bdb90f-7bf8-439a-9ca9-11476908406d" width="250"/> |
+| <img src="https://github.com/user-attachments/assets/bc4d53f0-2f4f-4699-9f8b-35d9fd020caa" width="350"/> | <img src="https://github.com/cnrture/ExceptionReport/assets/29903779/f8bdb90f-7bf8-439a-9ca9-11476908406d" width="350"/> |
 
 </div>
 
